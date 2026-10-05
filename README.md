@@ -25,4 +25,8 @@ Using the goals of a business, the agent will discover prospecting clients, coll
 
 ### Who Is Better Off When This Works?
 
-Independent consultants and small business owners looking for new clients
+Independent consultants and small business owners looking for new clients.
+
+Additional potential users include insurance agents and brokers, private contractors, real estate agents, financial advisors, freelancers, B2B sales representatives, career services professionals, marketing agencies, accountants, and other service-based professionals who are looking for new business leads.
+
+
