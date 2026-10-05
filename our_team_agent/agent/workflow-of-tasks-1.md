@@ -108,75 +108,67 @@ Analysis results are moved to excel for potential presentations.
 
 ```mermaid
 flowchart TD
-    START([User submits research request]) --> T01["T01: Define Goals and Consultant Services"]
+    T01["T01: Define Goals and Consultant Services"]
+    T02["T02: Scan Potential User Profile"]
+    T03["T03: Validate Required Inputs"]
+    T04["T04: Prepare Initial Search Queries"]
+    T05["T05: Discover Candidate Businesses"]
+    T06["T06: Choose the Next Research Action"]
+    T07["T07: Retrieve Permitted Public Resources"]
+    T08["T08: Extract Observable Signals and Contacts"]
+    T09["T09: Normalize and Deduplicate Records"]
+    T10["T10: Form Business Problem Hypothesis"]
+    T11["T11: Match Hypothesis to Service"]
+    T12["T12: Check Support For Key Claims"]
+    T13["T13: Decide Whether to Investigate Further"]
+    T14["T14: Score the Opportunity"]
+    T15["T15: Rank Scored Opportunities"]
+    T16["T16: Draft Brief and Outreach Message"]
+    T17["T17: Check Required Fields and Resource Links"]
+    T18["T18: Handle Retrieval and Tool Exceptions"]
+    T19["T19: Resolve Uncertain Findings and Exceptions"]
+    T20["T20: Review and Approve Result"]
+    T21["T21: Export approved Results to Excel"]
 
-    T01 --> INPUT{"Request supplied by deadline?"}
-    INPUT -->|No| STOP([Stopped without successful completion])
-    INPUT -->|Yes| PROFILE{"Authorized profile supplied?"}
-
-    PROFILE -->|Yes| T02["T02: Scan Potential User Profile"]
-    PROFILE -->|No| T03["T03: Validate Required Inputs"]
+    T01 -->|If the user has a profile| T02
+    T01 -->|Otherwise| T03
     T02 --> T03
 
-    T03 --> VALID{"Required inputs valid?"}
-    VALID -->|No - request corrections| T01
-    VALID -->|Yes| T04["T04: Prepare Initial Search Queries"]
+    T03 -->|missing/invalid data| T01
+    T03 --> T04
+    T04 --> T05
+    T05 --> T06
 
-    T04 --> T05["T05: Discover Candidate Businesses"]
-    T05 --> T06["T06: Choose the Next Research Action"]
-
-    T06 --> ACTION{"Selected permitted action?"}
-    ACTION -->|Refine discovery queries| T05
-    ACTION -->|Retrieve selected source| T07["T07: Retrieve Permitted Public Resources"]
-    ACTION -->|Use available evidence| T08["T08: Extract Observable Signals and Contacts"]
+    T06 -->|refine the discovery queries if the candidate fits poorly| T05
+    T06 -->|inspect a website| T07
 
     T07 --> T08
-    T08 --> T09["T09: Normalize and Deduplicate Records"]
-    T09 --> T10["T10: Form Business Problem Hypothesis"]
-    T10 --> T11["T11: Match Hypothesis to Service"]
-    T11 --> T12["T12: Check Support For Key Claims"]
-    T12 --> T13["T13: Decide Whether to Investigate Further"]
+    T08 --> T09
+    T09 --> T10
+    T10 --> T11
+    T11 --> T12
+    T12 --> T13
 
-    T13 --> RESEARCH{"Research decision?"}
-    RESEARCH -->|Useful next step within limits| T06
-    RESEARCH -->|Sufficient evidence| T14["T14: Score the Opportunity"]
-    RESEARCH -->|Unresolved findings or limits reached| T19["T19: Resolve Uncertain Findings and Exceptions"]
+    T13 -->|Missing, invalid, or inconsistent information| T06
+    T13 -->|Sufficient evidence ends the research| T14
+    T13 -->|limits prevent resolution| T19
 
-    T14 --> T15["T15: Rank Scored Opportunities"]
-    T15 --> T16["T16: Draft Brief and Outreach Message"]
-    T16 --> T17["T17: Check Required Fields and Resource Links"]
+    T14 --> T15
+    T15 --> T16
+    T16 --> T17
 
-    T17 --> CHECK{"Required checks pass?"}
-    CHECK -->|Yes| T20["T20: Review and Approve Result"]
-    CHECK -->|No| T19
+    T05 -.-> T18
+    T07 -.-> T18
+    T17 --> T18
+    T18 --> T12
+    T18 --> T19
 
-    T20 --> APPROVAL{"User decision by deadline?"}
-    APPROVAL -->|Approve| T21["T21: Export approved Results to Excel"]
-    APPROVAL -->|Revise draft| T16
-    APPROVAL -->|Authorize further research| T06
-    APPROVAL -->|Reject or no response| STOP
+    T17 --> T20
 
-    T21 --> SAVED{"Export successful?"}
-    SAVED -->|Yes| END([Approved outputs available to user])
-    SAVED -->|No| T18["T18: Handle Retrieval and Tool Exceptions"]
+    T19 -->|authorize additional research| T06
+    T19 -->|accept hypothesis| T20
 
-    T05 -.->|Tool failure| T18
-    T07 -.->|Tool failure| T18
-
-    T02 & T04 & T06 & T08 & T09 & T10 & T11 & T12 & T13 & T14 & T15 & T16 & T17 -.->|Tool failure| T18
-
-    T18 --> RECOVERY{"Permitted recovery under fixed rules?"}
-    RECOVERY -->|Retry discovery within limit| T05
-    RECOVERY -->|Retry retrieval within limit| T07
-    RECOVERY -->|Retry export within limit| T21
-    RECOVERY -->|Other failure or retries exhausted| T19
-
-    T19 --> HUMAN{"User decision by deadline?"}
-    HUMAN -->|Correct request| T01
-    HUMAN -->|Authorize research within revised limits| T06
-    HUMAN -->|Continue with usable records and limitations| T14
-    HUMAN -->|Reject affected prospects and continue| T14
-    HUMAN -->|Correct draft| T16
-    HUMAN -->|Authorize retry of approved export| T21
-    HUMAN -->|Stop or no response| STOP
+    T20 -->|Additional research| T06
+    T20 -->|other changes| T16
+    T20 --> T21
 ```
