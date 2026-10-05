@@ -5,6 +5,8 @@
 
 This workflow supports the goal in our completed [team charter](https://github.com/aJorge2002/BUS4498_Team_Build/blob/main/README.md).
 
+"Using the goals of a business, the agent will discover prospecting clients, collect evidence, identify the needs of the business, and generate intelligence briefs. Everything the agent finds will be backed up with sources. System aims to reduce the time required for research. System will also scrape contact information and create basic excel sheet with information on potential clients."
+
 ## 2. Workflow Trigger
 
 User inputs industry, location, services, and research limits. This is used to specify the target audience and business goals. If the user has created a profile, the agent will scan through the user’s data in T02. Otherwise, the agent jumps to T03.
