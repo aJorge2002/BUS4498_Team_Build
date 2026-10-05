@@ -4,7 +4,9 @@
 
 ## 1. Workflow Goal
 
-This workflow supports the goal in our completed [team charter] (https://github.com/aJorge2002/BUS4498_InClass_Builds/blob/main/my_first_agent/README.md)
+This workflow supports the goal in our completed (https://github.com/aJorge2002/BUS4498_Team_Build/blob/main/README.md)
+
+"Using the goals of a business, the agent will discover prospecting clients, collect evidence, identify the needs of the business, and generate intelligence briefs. Everything the agent finds will be backed up with sources. System aims to reduce the time required for research. System will also scrape contact information and create basic excel sheet with information on potential clients."
 
 ## 2. Workflow Trigger
 
