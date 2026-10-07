@@ -19,7 +19,7 @@ AI compares claims with missing, invalid, or inconsistent information. This step
 - **Contents and format:** missing, invalid, or inconsistent information
 - **Source:** T11: Match Hypothesis to Service
 
-- **If a required input is missing or invalid:**
+- **If a required input is missing or invalid:** If either input is missing, stop and send the case to T18: Handle Retrieval and Tool Exceptions.
 
 ## 3. Outputs
 
