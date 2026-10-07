@@ -19,7 +19,7 @@ User inputs industry, location, services, and research limits. This is used to s
 - **Contents and format:** industry, location, services, and research limits
 - **Source:** User
 
-- **If a required input is missing or invalid:**
+- **If a required input is missing or invalid:** The task stays open with the user until every required field is submitted. No downstream task starts.
 
 ## 3. Outputs
 
@@ -28,7 +28,7 @@ User inputs industry, location, services, and research limits. This is used to s
 - **Output name:** target audience and business goals
 - **Contents and format:** target audience and business goals
 - **Next task or recipient:** T02: Scan Potential User Profile; T03: Validate Required Inputs
-- **Complete when:**
+- **Complete when:** All required fields are submitted and saved.
 
 ## 4. Planned Tools
 
