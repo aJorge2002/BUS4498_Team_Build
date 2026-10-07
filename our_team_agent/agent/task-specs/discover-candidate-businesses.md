@@ -5,7 +5,7 @@
 - **Task ID:** T05
 - **Task name:** Discover Candidate Businesses
 - **Task type:** Retrieve
-- **Task owner:**
+- **Task owner:** Team Gambit (Adrian Jorge and Pedro Calvillo)
 
 ## 1. Task Description
 
@@ -19,7 +19,7 @@ Execute supplied queries with correct industry and location filters. Returns bus
 - **Contents and format:** supplied queries with correct industry and location filters
 - **Source:** T04: Prepare Initial Search Queries; T06: Choose the Next Research Action
 
-- **If a required input is missing or invalid:**
+- **If a required input is missing or invalid:** Stop, return no businesses, and send the case to T18: Handle Retrieval and Tool Exceptions.
 
 ## 3. Outputs
 
@@ -37,10 +37,10 @@ Execute supplied queries with correct industry and location filters. Returns bus
 - **Tool name:** discover_candidate_businesses
 - **Input:** queries
 - **Output:** businesses and sources
-- **Implementation Route:**
-- **Integration approach:**
+- **Implementation Route:** web API calls
+- **Integration approach:** direct integration
 - **Role in this task:** Execute supplied queries with correct industry and location filters. Returns businesses and sources.
-- **Task timeout:**
-- **Maximum retries:**
-- **Retry only when:**
-- **On timeout, exhausted retries, or an error that cannot be retried:**
+- **Task timeout:** 2 minutes
+- **Maximum retries:** 2
+- **Retry only when:** The call times out, is rate-limited, or returns a temporary server error, waiting 5 seconds between attempts. Searching is read-only, so a retry cannot duplicate anything.
+- **On timeout, exhausted retries, or an error that cannot be retried:** Record the status "failed" with the error and the attempts made, pass no output downstream, and send the case to T18: Handle Retrieval and Tool Exceptions.
