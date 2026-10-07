@@ -5,7 +5,7 @@
 - **Task ID:** T17
 - **Task name:** Check Required Fields and Resource Links
 - **Task type:** Verify
-- **Task owner:**
+- **Task owner:** Team Gambit (Adrian Jorge and Pedro Calvillo)
 
 ## 1. Task Description
 
