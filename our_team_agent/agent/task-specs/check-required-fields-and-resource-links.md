@@ -26,9 +26,9 @@ Verify structure and evidence. Using information from T11.
 ### Output 1
 
 - **Output name:** Required Fields and Resource Links
-- **Contents and format:**
+- **Contents and format:** Pass or fail, with a list of missing sections and broken or unsupported links.
 - **Next task or recipient:** T18: Handle Retrieval and Tool Exceptions; T20: Review and Approve Result
-- **Complete when:**
+- **Complete when:** A pass or fail status is recorded with every issue listed.
 
 ## 4. Planned Tools
 
@@ -37,10 +37,10 @@ Verify structure and evidence. Using information from T11.
 - **Tool name:** check_required_fields_and_resource_links
 - **Input:** information from T11
 - **Output:** Required Fields and Resource Links
-- **Implementation Route:**
-- **Integration approach:**
+- **Implementation Route:** functions/scripts
+- **Integration approach:** direct integration
 - **Role in this task:** Verify structure and evidence. Using information from T11.
-- **Task timeout:**
-- **Maximum retries:**
-- **Retry only when:**
-- **On timeout, exhausted retries, or an error that cannot be retried:**
+- **Task timeout:** 2 minutes
+- **Maximum retries:** 2
+- **Retry only when:** Only when a link request times out, waiting 5 seconds between attempts. The checks are read-only, so retries cannot duplicate anything.
+- **On timeout, exhausted retries, or an error that cannot be retried:** Record the status 'check failed' with the error and send the case to T18: Handle Retrieval and Tool Exceptions.
