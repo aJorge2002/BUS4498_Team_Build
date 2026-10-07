@@ -5,7 +5,7 @@
 - **Task ID:** T12
 - **Task name:** Check Support For Key Claims
 - **Task type:** Verify
-- **Task owner:**
+- **Task owner:** Team Gambit (Adrian Jorge and Pedro Calvillo)
 
 ## 1. Task Description
 
@@ -37,10 +37,10 @@ AI compares claims with missing, invalid, or inconsistent information. This step
 - **Tool name:** check_support_for_key_claims
 - **Input:** claims
 - **Output:** collected information
-- **Implementation Route:**
-- **Integration approach:**
+- **Implementation Route:** functions/scripts
+- **Integration approach:** direct integration
 - **Role in this task:** AI compares claims with missing, invalid, or inconsistent information. This step’s collected information is saved for the next research decision.
-- **Task timeout:**
-- **Maximum retries:**
-- **Retry only when:**
-- **On timeout, exhausted retries, or an error that cannot be retried:**
+- **Task timeout:** 3 minutes
+- **Maximum retries:** 2
+- **Retry only when:** Only on a timeout or output that does not cover every claim. The check is read-only, so retries cannot duplicate anything.
+- **On timeout, exhausted retries, or an error that cannot be retried:** Record the status 'failed' with the error and the attempts made, pass no output downstream, and send the case to T18: Handle Retrieval and Tool Exceptions.
