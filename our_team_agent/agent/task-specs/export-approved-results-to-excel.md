@@ -9,38 +9,50 @@
 
 ## 1. Task Description
 
-Analysis results are moved to excel for potential presentations.
+Exports approved consulting opportunities from T20 into a structured Excel spreadsheet for business outreach, research tracking, and potential presentations.
+
+The spreadsheet organizes business information, identified problem hypotheses, recommended consulting services, opportunity scores, public contact information, and supporting sources.
+
+Only approved results are exported. Missing information is clearly marked, and unverified hypotheses remain identified as potential problems.
+
+The task does not change research findings, generate new scores, or contact businesses.
 
 ## 2. Inputs
 
 ### Input 1
 
-- **Input name:** approved Results
-- **Contents and format:** Analysis results: the approved ranked opportunities, with each one's rank, business name, score, contact details, and source links.
+- **Input name:** final_review_decision
+- **Contents and format:** Record containing reviewed business identifiers, approval statuses, reviewer comments, and final decisions.
 - **Source:** T20: Review and Approve Result
 
-- **If a required input is missing or invalid:** Stop, create no file, and send the case to T19: Resolve Uncertain Findings and Exceptions so the user knows nothing was exported.
+### Input 2
+
+- **Input name:** approved_opportunity_records
+- **Contents and format:** List or table containing business names, industries, locations, websites, opportunity rankings, weighted scores, identified problems, recommended services, contact information, supporting evidence, and source links.
+- **Source:** T15: Rank Scored Opportunities; T16: Draft Brief and Outreach Message; T17: Check Required Fields and Resource Links
+
+- **If a required input is missing or invalid:** Stop the affected export and identify the missing information. Return approval issues to T20 and incomplete records to their originating tasks. Send technical failures to T18: Handle Retrieval and Tool Exceptions. Do not export unapproved opportunities.
 
 ## 3. Outputs
 
 ### Output 1
 
-- **Output name:** excel
-- **Contents and format:** excel for potential presentations. An Excel workbook with one row per approved opportunity: rank, business, score, contact details, and source links.
-- **Next task or recipient:** User
-- **Complete when:** Analysis results are moved to excel for potential presentations. The file opens and has one row for every approved opportunity.
+- **Output name:** approved_opportunities_excel
+- **Contents and format:** Excel workbook (.xlsx) containing approved business opportunities organized in a table with business name, industry, location, website, potential business problem, recommended consulting service, opportunity score, ranking, available business contacts, source links, and unresolved uncertainties.
+- **Next task or recipient:** User / Team Gambit; saved to the designated output location.
+- **Complete when:** The Excel workbook has been generated, saved successfully, checked for required fields and approval status, and made available to the user.
 
 ## 4. Planned Tools
 
 ### Tool 1
 
 - **Tool name:** export_approved_results_to_excel
-- **Input:** approved Results
-- **Output:** excel
-- **Implementation Route:** file operations
-- **Integration approach:** direct integration
-- **Role in this task:** Analysis results are moved to excel for potential presentations.
-- **Task timeout:** 1 minute
-- **Maximum retries:** 2
-- **Retry only when:** The file write fails, waiting 5 seconds between attempts. The file is named with the run ID, so a retry replaces the same file instead of creating a duplicate.
-- **On timeout, exhausted retries, or an error that cannot be retried:** Record the status "export failed" with the error and the attempts made, create no partial file, and send the case to T19: Resolve Uncertain Findings and Exceptions.
+- **Input:** final_review_decision; approved_opportunity_records
+- **Output:** approved_opportunities_excel
+- **Implementation Route:** Functions/scripts and database queries.
+- **Integration approach:** Direct integration.
+- **Role in this task:** Retrieves approved consulting opportunity records, organizes the information into an Excel workbook, preserves supporting evidence and source links, and saves the completed file for user access.
+- **Task timeout:** 2 minutes total per task run, including retries.
+- **Maximum retries:** 1
+- **Retry only when:** Temporary database errors, file-generation failures, or recoverable system errors occur. Wait 5 seconds before retrying. Do not retry invalid records or missing approvals automatically. Use the same export identifier to prevent duplicate files.
+- **On timeout, exhausted retries, or an error that cannot be retried:** Record the failure, affected opportunities, attempted operations, and any incomplete export files. Mark the task incomplete and send the case to T18: Handle Retrieval and Tool Exceptions. Do not present incomplete exports as successfully completed.
