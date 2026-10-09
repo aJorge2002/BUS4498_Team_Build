@@ -15,7 +15,7 @@ User inputs industry, location, services, and research limits. This is used to s
 
 ### Input 1
 
-- **Input name:** industry, location, services, and research limits
+- **Input name:** consultant_search_preferences // Industry, location, services, and research limits
 - **Contents and format:** industry, location, services, and research limits
 - **Source:** User
 
@@ -25,14 +25,14 @@ User inputs industry, location, services, and research limits. This is used to s
 
 ### Output 1
 
-- **Output name:** target audience and business goals
+- **Output name:** consultant_search_profile // Target audience and business goals
 - **Contents and format:** target audience and business goals
 - **Next task or recipient:** T02: Scan Potential User Profile; T03: Validate Required Inputs
 - **Complete when:** All required fields are submitted and saved.
 
 ## 4. Planned Tools
 
-- **Task timeout:**
+- **Task timeout:** Not applicable - user-driven data
 - **Maximum retries:** Not applicable — manual task.
 - **Retry only when:** Not applicable
-- **On timeout, exhausted retries, or an error that cannot be retried:**
+- **On timeout, exhausted retries, or an error that cannot be retried:** Keep submitted inputs where possible, notify the user there has been an error. Do not move to next step unless issue is resolved.
