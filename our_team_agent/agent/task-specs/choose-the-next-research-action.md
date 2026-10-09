@@ -15,9 +15,9 @@ task_owner: "Team Gambit (Adrian Jorge and Pedro Calvillo) "
 
 ### Input 1
 
-- **Input name:** Findings
+- **Input name:** Research Findings and constraints
 - **What it contains:** businesses and sources
-- **Source:** T05: Discover Candidate Businesses; T13: Decide Whether to Investigate Further
+- **Source:** T05: Discover Candidate Businesses; T13: Decide Whether to Investigate Further; validated research preferences from T03.
 
 ## 3. Tool Permissions and Boundaries
 
